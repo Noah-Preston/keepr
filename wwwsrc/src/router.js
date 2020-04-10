@@ -32,7 +32,7 @@ export default new Router({
       beforeEnter: authGuard
     },
     {
-      path: "/activevault",
+      path: "/activevault/:id",
       name: "activevault",
       component: ActiveVault,
       beforeEnter: authGuard

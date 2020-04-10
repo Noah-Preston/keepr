@@ -1,17 +1,17 @@
 <template>
   <div class="container-fluid">
     <div class="row text-center">
-      <div class="col-12">{{active.Name}}</div>
+      <div class="col-12">{{active.name}}</div>
     </div>
     <div class="row">
       <div class="col-3"></div>
-      <div class="col-6">
-        <img :src="require(`${active.Img}`)" alt />
+      <div class="col-6 d-flex justify-content-center">
+        <img :src="active.img" alt />
       </div>
       <div class="col-3"></div>
     </div>
-    <div class="row">
-      <div class="col-12">{{active.Description}}</div>
+    <div class="row text-center">
+      <div class="col-12">{{active.description}}</div>
     </div>
     <div class="row">
       <div class="col-2"></div>
@@ -40,8 +40,8 @@
           </div>
           <div class="modal-body">
             <vaultname
-              v-for="(vaultnameObj, index) in vaults"
-              :key="vaultnameObj.id"
+              v-for="(vaultObj, index) in vaults"
+              :key="vaultObj.id"
               :vaultData="vaultObj"
               :vaultIndex="index"
             />
@@ -61,6 +61,12 @@ export default {
   name: "activekeep",
   components: {
     vaultname
+  },
+  mounted() {
+    // debugger;
+    this.$store.dispatch("getVaults");
+    this.$store.dispatch("getMyKeeps", this.$store.state.user.sub);
+    // let x = 1;
   },
   computed: {
     active() {

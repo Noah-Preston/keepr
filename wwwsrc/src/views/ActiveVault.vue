@@ -1,10 +1,10 @@
 <template>
   <div class="bgc main-font container-fluid">
     <div class="row text-center">
-      <div class="col">{{activeVault.Name}}</div>
+      <div class="col">{{activeVault.name}}</div>
     </div>
     <div class="row text-center">
-      <div class="col">{{activeVault.Description}}</div>
+      <div class="col">{{activeVault.description}}</div>
     </div>
     <div class="row">
       <keep
@@ -24,15 +24,22 @@
 </template>
 
 <script>
+import Keep from "../components/Keep";
 export default {
-  name: "Vault",
+  name: "ActiveVault",
+  components: {
+    Keep
+  },
   computed: {
     activeVault() {
-      return this.$store.state.activeVault;
+      return this.$store.state.vaults.find(v => v.id == this.$route.params.id);
     },
     vaultKeeps() {
       return this.$store.state.activeVault.keeps;
     }
+  },
+  mounted() {
+    this.$store.dispatch("getVaultKeeps", this.$route.params.id);
   },
   methods: {
     deleteVault() {

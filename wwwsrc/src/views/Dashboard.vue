@@ -45,9 +45,9 @@
             <form>
               <div class="form-group">
                 <label>Title</label>
-                <input type="Title" class="form-control" v-model="newVault.Name" />
+                <input type="Title" class="form-control" v-model="newVault.name" />
                 <label>Description</label>
-                <input type="Description" class="form-control" v-model="newVault.Description" />
+                <input type="Description" class="form-control" v-model="newVault.description" />
               </div>
               <button type="button" class="btn btn-primary" @click="makeVault">Post</button>
             </form>
@@ -66,8 +66,7 @@ import Keep from "../components/Keep";
 import Vault from "../components/Vault";
 export default {
   mounted() {
-    this.$store.dispatch("getMyKeeps", this.$store.state.user.id);
-    this.$store.dispatch("getVaults");
+    //debugger;
   },
   computed: {
     myKeeps() {

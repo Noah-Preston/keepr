@@ -1,5 +1,5 @@
 <template>
-  <div class="row">{{vaultData.Name}}</div>
+  <div class="row" @click="addKeep">{{vaultData.name}}</div>
 </template>
 
 <script>
@@ -8,12 +8,14 @@ export default {
   props: ["vaultData", "vaultIndex"],
   methods: {
     addKeep() {
-      let newVault = vaultData.keeps;
+      //debugger;
+      let temp = this.vaultData;
       let data = {
-        vaultId: vaultData.id,
-        keepId: this.$store.activeKeep.id
+        vaultId: temp.id,
+        keepId: this.$store.state.activeKeep.id
       };
-      this.$store.dispatch("addKeepToVault", data);
+      console.log(data);
+      this.$store.dispatch("createVaultKeep", data);
       $("#vaultModal").modal("hide");
     }
   }

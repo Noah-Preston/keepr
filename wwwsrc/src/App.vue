@@ -12,7 +12,11 @@ export default {
   name: "App",
   async beforeCreate() {
     await onAuth();
-    this.$store.dispatch("setBearer", this.$auth.bearer);
+    if (this.$auth.isAuthenticated) {
+      this.$store.dispatch("setBearer", this.$auth.bearer);
+      this.$store.dispatch("getMyKeeps", this.$store.state.user.id);
+      this.$store.dispatch("getVaults");
+    }
   },
   components: {
     Navbar

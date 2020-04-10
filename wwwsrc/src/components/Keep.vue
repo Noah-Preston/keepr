@@ -1,14 +1,14 @@
 <template>
   <div class="col-3">
-    <div class="card" style="width: 18rem;" @click="viewKeep">
-      <img class="card-img-top" :src="require(`${keepData.img}`)" alt="Card image cap" />
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" :src="keepData.img" alt="Card image cap" @click="viewKeep" />
       <div class="card-body">
         <h5 class="card-title">{{keepData.name}}</h5>
         <p class="card-text">{{keepData.description}}</p>
         <button class="btn btn-sm btn-success" v-if="this.$auth.isAuthenticated">Keep</button>
         <button
           class="btn btn-sm btn-danger"
-          v-if="keepData.userId == this.$store.state.user.id"
+          v-if="keepData.userId == this.$store.state.user.sub"
           @click="deleteKeep"
         >delete</button>
         <button

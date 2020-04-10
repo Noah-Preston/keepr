@@ -71,12 +71,13 @@ export default {
   data() {
     return {
       newKeep: {
-        UserId: this.$store.state.user.id
+        UserId: this.$store.state.user.sub
       }
     };
   },
   mounted() {
     this.$store.dispatch("getKeeps");
+    this.$store.commit("setUser", this.$auth.user);
   },
   computed: {
     user() {

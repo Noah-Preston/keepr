@@ -116,9 +116,6 @@ export default new Vuex.Store({
       try {
         let res = await api.get("vaults/" + vaultId + "/keeps");
         commit("setVaultKeeps", res.data);
-        router.push({
-          name: "VaultDetails"
-        });
       } catch (error) {
         console.error(error);
       }
@@ -183,8 +180,8 @@ export default new Vuex.Store({
     async createVaultKeep({ commit, dispatch }, keep) {
       try {
         let res = await api.post("vaultkeeps", keep);
-        commit("addVaultKeep", res.data);
-        dispatch("editKeeps", keep.keepId);
+        //commit("addVaultKeep", res.data);
+        //dispatch("editKeeps", keep.keepId);
       } catch (error) {
         console.error(error);
       }
